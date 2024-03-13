@@ -85,10 +85,16 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 #     }
 # }
 
-   # our own
+   # our own Elvis
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+   # our own Elvis
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeanyapp.com",
+    "https://*.herokuapp.com"
+]
 
 
 # Password validation
