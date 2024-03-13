@@ -13,3 +13,4 @@ class Post(models.Model):
     content = models.TextField() # text field
     created_on = models.DateTimeField(auto_now_add=True) # created time is the time of post entry.
     status = models.IntegerField(choices=STATUS, default=0)
+    excerpt = models.TextField(blank=True) #As the excerpt is optional, the user must be able to leave this database row blank without throwing an error.
