@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY") # my personal secret_key from env.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-elvisthegre-djangoblogp-xz16t2acql1.ws-eu110.gitpod.io','.herokuapp.com'] # Always add this '.herokuapp.com'
 
@@ -91,10 +91,12 @@ DATABASES = {
 }
 
    # our own Elvis
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeanyapp.com",
-    "https://*.herokuapp.com"
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://*.codeanyapp.com",
+#     "https://*.herokuapp.com"
+# ]
+
+CSRF_TRUSTED_ORIGINS = ['https://8000-elvisthegre-djangoblogp-xz16t2acql1.ws-eu110.gitpod.io']
 
 
 # Password validation
