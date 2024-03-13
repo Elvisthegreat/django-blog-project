@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY") # my personal secret_key from env.py
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-elvisthegre-djangoblogp-xz16t2acql1.ws-eu108.gitpod.io','.herokuapp.com'] # Always add this '.herokuapp.com'
+ALLOWED_HOSTS = ['8000-elvisthegre-djangoblogp-xz16t2acql1.ws-eu110.gitpod.io','.herokuapp.com'] # Always add this '.herokuapp.com'
 
 
 # Application definition
