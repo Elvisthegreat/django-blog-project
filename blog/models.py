@@ -15,3 +15,4 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True) #As the excerpt is optional, the user must be able to leave this database row blank without throwing an error.
     updated_on = models.DateTimeField(auto_now=True) # The auto_now argument for the updated_on field sets the value to the current date and time whenever the record is saved, not just when it is created.
+    
