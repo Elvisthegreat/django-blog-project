@@ -12,7 +12,7 @@ class Post(models.Model):
     ) # Foreign Key. One user can write many posts, so this is a one-to-many or Foreign Key
     content = models.TextField() # text field
     created_on = models.DateTimeField(auto_now_add=True) # created time is the time of post entry.
-    status = models.IntegerField(choices=STATUS, default=0)
-    excerpt = models.TextField(blank=True) #As the excerpt is optional, the user must be able to leave this database row blank without throwing an error.
+    status = models.IntegerField(choices=STATUS, default=0) # The option choices use the STATUS constant to limit the integer choice to 0 or 1 and has mapped these two integers to "Draft" and "Published".
+    excerpt = models.TextField(blank=True) # As the excerpt is optional, the user must be able to leave this database row blank without throwing an error.
     updated_on = models.DateTimeField(auto_now=True) # The auto_now argument for the updated_on field sets the value to the current date and time whenever the record is saved, not just when it is created.
     
