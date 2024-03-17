@@ -15,6 +15,8 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0) # The option choices use the STATUS constant to limit the integer choice to 0 or 1 and has mapped these two integers to "Draft" and "Published".
     excerpt = models.TextField(blank=True) # As the excerpt is optional, the user must be able to leave this database row blank without throwing an error.
     updated_on = models.DateTimeField(auto_now=True) # The auto_now argument for the updated_on field sets the value to the current date and time whenever the record is saved, not just when it is created.
+
+
     class Meta:
         ordering = ["-created_on"]
     def __str__(self):
@@ -31,6 +33,8 @@ class Comment(models.Model):
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+
+
     class Mata:
         ordering= ["created_on"]
     def __str__(self):
