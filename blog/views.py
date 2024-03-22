@@ -8,4 +8,4 @@ from .models import Post
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1) # we can use .filter(author=1) or 2 or 3 to get a certain post and author
     template_name = "blog/index.html"
-    paginate_by = 6
+    paginate_by = 6 # this tells to display 6 blog post on the home page we change to any number
