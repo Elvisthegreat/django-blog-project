@@ -31,5 +31,6 @@ def post_detail(request, slug):
     return render(
         request,
         "blog/post_detail.html",
+        # Context key and value pairs as a dictionary
         {"post": post},
     )
