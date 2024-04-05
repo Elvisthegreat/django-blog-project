@@ -30,7 +30,7 @@ class Comment(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="commenter"
     )
-    body = models.TextField()
+    body = models.TextField() # the comment body field section
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 

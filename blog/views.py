@@ -33,19 +33,21 @@ def post_detail(request, slug):
     comment_count = post.comments.filter(approved=True).count()
     
     if request.method == "POST":
+        print("Received a POST request")
         comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
+        if comment_form.is_valid(): # means that the form has been filled out correctly
+            comment = comment_form.save(commit=False) # Save, but not to the database not until a user click save button 
             comment.author = request.user
-            comment.post = post
-            comment.save()
-            # for succes message
+            comment.post = post # We also set the post field using the post variable, which contains the result of the get_object_or_404
+            comment.save() # call the save method to write the data to the database when the save button i click
+            # for success message
             messages.add_message(
             request, messages.SUCCESS,
             'Comment submitted and awaiting approval'
     )
-
-    comment_form = CommentForm()
+    
+    comment_form = CommentForm() # Reset to blank after comment is submitted
+    print( "About to render template")
 
     return render(
         request,
