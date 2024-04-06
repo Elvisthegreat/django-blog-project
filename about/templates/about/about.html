@@ -10,6 +10,7 @@
         <div class="col-8">
             <h2>{{ about.title }}</h2>
             {{ about.content | safe }}
+            
         </div>
     </div>
     <div class="row justify-content-center">
@@ -24,7 +25,7 @@
             <!-- add your form here. Your submit button should 
                                 have the classes of btn, btn-secondary -->
                 <form method="post">
-                    {{ collaborate_form | crispy }}
+                    {{ collaborate_form | crispy }} <!--With this we displayed the name, email and messages forms in the About section-->
                     {% csrf_token %}
                     <button type="submit" class="btn btn-secondary">Submit</button>
                 </form>
