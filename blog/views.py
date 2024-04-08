@@ -74,10 +74,10 @@ def comment_edit(request, slug, comment_id):
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
 
-        if comment_form.is_valid() and comment.author == request.user:
+        if comment_form.is_valid() and comment.author == request.user: # checking aain if the form is valid and if it still same user
             comment = comment_form.save(commit=False)
             comment.post = post
-            comment.approved = False
+            comment.approved = False # Turn the previous approved commemt to unapproved
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
