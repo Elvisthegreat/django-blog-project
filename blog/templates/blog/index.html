@@ -15,11 +15,14 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">
-                                {% if "placeholder" in post.featured_image.url %}
+                                <!--Cloudinary-->
+                                <!--If "placeholder" is there, then the default.jpg file in our static folder
+                                     should be displayed. Otherwise, the user-generated image stored on Cloudinary is shown.-->
+                                {% if "placeholder" in post.featured_image.url %} <!--start for placeholder-->
                                 <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                                 {% else %}
                                 <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
-                                {% endif %}
+                                {% endif %} <!--End for placeholder-->
                                 <div class="image-flash">
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
