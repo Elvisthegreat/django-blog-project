@@ -9,12 +9,28 @@ from .forms import CommentForm
 
 
 class PostList(generic.ListView):
+
+    """
+    Returns all published posts in :model:`blog.Post`
+    and displays them in a page of six posts. 
+    **Context**
+
+    ``queryset``
+        All published instances of :model:`blog.Post`
+    ``paginate_by``
+        Number of posts per page.
+        
+    **Template:**
+
+    :template:`blog/index.html`
+    """
     queryset = Post.objects.filter(status=1) # we can use .filter(author=1) or 2 or 3 to get a certain post and author
     template_name = "blog/index.html"
     paginate_by = 6 # this tells to display 6 blog post at a time on the homepage, we change to any number
 
 # function for our post_detail to dsiplay a single blog post
 def post_detail(request, slug):
+
     """
     Display an individual :model:`blog.Post`.
 
@@ -22,6 +38,12 @@ def post_detail(request, slug):
 
     ``post``
         An instance of :model:`blog.Post`.
+    ``comments``
+        All approved comments related to the post.
+    ``comment_count``
+        A count of approved comments related to the post.
+    ``comment_form``
+        An instance of :form:`blog.CommentForm`
 
     **Template:**
 
@@ -34,7 +56,6 @@ def post_detail(request, slug):
     comment_count = post.comments.filter(approved=True).count()
     
     if request.method == "POST":
-        print("Received a POST request")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid(): # means that the form has been filled out correctly
             comment = comment_form.save(commit=False) # Save, but not to the database not until a user click save button 
@@ -48,7 +69,6 @@ def post_detail(request, slug):
     )
     
     comment_form = CommentForm() # Reset to blank after comment is submitted
-    print( "About to render template")
 
     return render(
         request,
@@ -65,7 +85,16 @@ def post_detail(request, slug):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    Display an individual comment for edit.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comment``
+        A single comment related to the post.
+    ``comment_form``
+        An instance of :form:`blog.CommentForm`
     """
     if request.method == "POST":
 
@@ -89,7 +118,14 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    Delete an individual comment.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comment``
+        A single comment related to the post.
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
