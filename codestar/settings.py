@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-from django.contrib.messages import constants as messages # Add this line to for message
+import sys # imported for testing our code
+from django.contrib.messages import constants as messages # Add this line to for message green
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
@@ -111,6 +112,9 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3' # for testing our code
 
    # our own Elvis
 # CSRF_TRUSTED_ORIGINS = [
