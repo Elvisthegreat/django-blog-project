@@ -12,6 +12,7 @@ class TestBlogViews(TestCase):
     author the blog post: author=self.user"""
 
     def setUp(self):
+        """ Testing views with GET """
         """ A small setup model for testing """
         self.user = User.objects.create_superuser(
             username="myUsername",
@@ -24,6 +25,7 @@ class TestBlogViews(TestCase):
         self.post.save()
 
     def test_render_post_detail_page_with_comment_form(self):
+        """ Testing views with GET """
         response = self.client.get(reverse(
             'post_detail', args=['blog-title']))
         self.assertEqual(response.status_code, 200)
@@ -31,3 +33,19 @@ class TestBlogViews(TestCase):
         self.assertIn(b"Blog content", response.content)
         self.assertIsInstance(
             response.context['comment_form'], CommentForm) # Verifies that the comment_form from the post_detail view's context is an instance of the CommentForm class.
+
+
+    def test_successful_comment_submission(self):
+        """Test for posting a comment on a post POST request"""
+        self.client.login(
+            username="myUsername", password="myPassword")
+        post_data = {
+            'body': 'This is a test comment.'
+        }
+        response = self.client.post(reverse(
+            'post_detail', args=['blog-title']), post_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            b'Comment submitted and awaiting approval',
+            response.content
+        )    

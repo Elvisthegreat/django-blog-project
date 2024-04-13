@@ -4,6 +4,8 @@ from .forms import CollaborateForm
 from .models import About
 
 class AboutBlogView(TestCase):
+
+    """ Testing views with GET """
     def setUp(self):
         """Creates about me content"""
         self.about_content = About(
