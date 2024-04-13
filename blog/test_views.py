@@ -12,6 +12,7 @@ class TestBlogViews(TestCase):
     author the blog post: author=self.user"""
 
     def setUp(self):
+        """ A small setup model for testing """
         self.user = User.objects.create_superuser(
             username="myUsername",
             password="myPassword",
@@ -26,7 +27,7 @@ class TestBlogViews(TestCase):
         response = self.client.get(reverse(
             'post_detail', args=['blog-title']))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Blog title", response.content)
+        self.assertIn(b"Blog title", response.content) # It checks whether the first argument (in this case, "Blog title") is present in the second argument (in this case, response.content)
         self.assertIn(b"Blog content", response.content)
         self.assertIsInstance(
-            response.context['comment_form'], CommentForm)
+            response.context['comment_form'], CommentForm) # Verifies that the comment_form from the post_detail view's context is an instance of the CommentForm class.
